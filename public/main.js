@@ -1,10 +1,12 @@
-//let fortunes = [];
+let fortunes = [];
+let count = 0;
 
 async function loadFortunes () {
     try{
-        const response = await fetch("https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/fortunes/fortunes");
-        const result = await response.json();
-        fortunes = result.fortunes;
+        // const response = await fetch("https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/fortunes/fortunes");
+        // const result = await response.json();
+        // fortunes = result.fortunes;
+        fortunes = [{id:1, fortune:"Example"}];
         initApp();
     }
     catch(err){
@@ -47,7 +49,20 @@ function randomFortune(start){
         fortuneDisplay(newFortune.fortune, start);
     }
     else{
-        const emptyFortune = "Erm.... I'm out. Can't think of anything."
+        let emptyFortune = ""
+        if(count === 4){
+            emptyFortune = "Ive told you i dont have anything else, leave me alone.";
+        }
+        else if(count === 9){
+            emptyFortune = "Seriously im getting a restraining order.";
+        }
+        else{
+            emptyFortune = "Erm.... I'm out. Can't think of anything."
+        }
+
+        if(count < 10){
+            count++;
+        }
         fortuneDisplay(emptyFortune, start);
     }
 }
