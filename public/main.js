@@ -1,9 +1,10 @@
-let fortunes = [];
+//let fortunes = [];
 
 async function loadFortunes () {
     try{
-        const response = await fetch("/fortunes");
-        fortunes = await response.json();
+        const response = await fetch("https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/fortunes/fortunes");
+        const result = await response.json();
+        fortunes = result.fortunes;
         initApp();
     }
     catch(err){
@@ -38,7 +39,6 @@ function fortuneDisplay(newFortune, start){
 }
 
 function randomFortune(start){
-    console.log(fortunes.length);
     $("#new-fortune-btn").prop("disabled", true);
     if (fortunes.length > 0){
         const newFortuneIndex = Math.floor(Math.random()*fortunes.length);
@@ -47,7 +47,6 @@ function randomFortune(start){
         fortuneDisplay(newFortune.fortune, start);
     }
     else{
-        console.log("empty")
         const emptyFortune = "Erm.... I'm out. Can't think of anything."
         fortuneDisplay(emptyFortune, start);
     }
