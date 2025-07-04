@@ -3,10 +3,9 @@ let count = 0;
 
 async function loadFortunes () {
     try{
-        // const response = await fetch("https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/fortunes/fortunes");
-        // const result = await response.json();
-        // fortunes = result.fortunes;
-        fortunes = [{id:1, fortune:"Example"}];
+        const response = await fetch("https://api.sheety.co/b28a011384b372aeb5d4b9e2e430e43a/fortunes/fortunes");
+        const result = await response.json();
+        fortunes = result.fortunes;
         initApp();
     }
     catch(err){
